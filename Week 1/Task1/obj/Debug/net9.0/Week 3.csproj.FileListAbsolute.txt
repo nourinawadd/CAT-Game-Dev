@@ -1,0 +1,28 @@
+D:\UNIVERSITY\Extracurriculars\BACKEND\Week 3\bin\Debug\net9.0\Week 3.exe
+D:\UNIVERSITY\Extracurriculars\BACKEND\Week 3\bin\Debug\net9.0\Week 3.deps.json
+D:\UNIVERSITY\Extracurriculars\BACKEND\Week 3\bin\Debug\net9.0\Week 3.runtimeconfig.json
+D:\UNIVERSITY\Extracurriculars\BACKEND\Week 3\bin\Debug\net9.0\Week 3.dll
+D:\UNIVERSITY\Extracurriculars\BACKEND\Week 3\bin\Debug\net9.0\Week 3.pdb
+D:\UNIVERSITY\Extracurriculars\BACKEND\Week 3\obj\Debug\net9.0\Week 3.GeneratedMSBuildEditorConfig.editorconfig
+D:\UNIVERSITY\Extracurriculars\BACKEND\Week 3\obj\Debug\net9.0\Week 3.AssemblyInfoInputs.cache
+D:\UNIVERSITY\Extracurriculars\BACKEND\Week 3\obj\Debug\net9.0\Week 3.AssemblyInfo.cs
+D:\UNIVERSITY\Extracurriculars\BACKEND\Week 3\obj\Debug\net9.0\Week 3.csproj.CoreCompileInputs.cache
+D:\UNIVERSITY\Extracurriculars\BACKEND\Week 3\obj\Debug\net9.0\Week 3.dll
+D:\UNIVERSITY\Extracurriculars\BACKEND\Week 3\obj\Debug\net9.0\refint\Week 3.dll
+D:\UNIVERSITY\Extracurriculars\BACKEND\Week 3\obj\Debug\net9.0\Week 3.pdb
+D:\UNIVERSITY\Extracurriculars\BACKEND\Week 3\obj\Debug\net9.0\Week 3.genruntimeconfig.cache
+D:\UNIVERSITY\Extracurriculars\BACKEND\Week 3\obj\Debug\net9.0\ref\Week 3.dll
+D:\UNIVERSITY\Extracurriculars\GAME DEV\Week 1\bin\Debug\net9.0\Week 3.exe
+D:\UNIVERSITY\Extracurriculars\GAME DEV\Week 1\bin\Debug\net9.0\Week 3.deps.json
+D:\UNIVERSITY\Extracurriculars\GAME DEV\Week 1\bin\Debug\net9.0\Week 3.runtimeconfig.json
+D:\UNIVERSITY\Extracurriculars\GAME DEV\Week 1\bin\Debug\net9.0\Week 3.dll
+D:\UNIVERSITY\Extracurriculars\GAME DEV\Week 1\bin\Debug\net9.0\Week 3.pdb
+D:\UNIVERSITY\Extracurriculars\GAME DEV\Week 1\obj\Debug\net9.0\Week 3.GeneratedMSBuildEditorConfig.editorconfig
+D:\UNIVERSITY\Extracurriculars\GAME DEV\Week 1\obj\Debug\net9.0\Week 3.AssemblyInfoInputs.cache
+D:\UNIVERSITY\Extracurriculars\GAME DEV\Week 1\obj\Debug\net9.0\Week 3.AssemblyInfo.cs
+D:\UNIVERSITY\Extracurriculars\GAME DEV\Week 1\obj\Debug\net9.0\Week 3.csproj.CoreCompileInputs.cache
+D:\UNIVERSITY\Extracurriculars\GAME DEV\Week 1\obj\Debug\net9.0\Week 3.dll
+D:\UNIVERSITY\Extracurriculars\GAME DEV\Week 1\obj\Debug\net9.0\refint\Week 3.dll
+D:\UNIVERSITY\Extracurriculars\GAME DEV\Week 1\obj\Debug\net9.0\Week 3.pdb
+D:\UNIVERSITY\Extracurriculars\GAME DEV\Week 1\obj\Debug\net9.0\Week 3.genruntimeconfig.cache
+D:\UNIVERSITY\Extracurriculars\GAME DEV\Week 1\obj\Debug\net9.0\ref\Week 3.dll
