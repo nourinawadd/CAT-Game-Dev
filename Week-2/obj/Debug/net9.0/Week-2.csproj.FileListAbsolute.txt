@@ -1,0 +1,15 @@
+D:\UNIVERSITY\Extracurriculars\GAME DEV\CAT-Game-Dev\Week-2\obj\Debug\net9.0\Week-2.GeneratedMSBuildEditorConfig.editorconfig
+D:\UNIVERSITY\Extracurriculars\GAME DEV\CAT-Game-Dev\Week-2\obj\Debug\net9.0\Week-2.AssemblyInfoInputs.cache
+D:\UNIVERSITY\Extracurriculars\GAME DEV\CAT-Game-Dev\Week-2\obj\Debug\net9.0\Week-2.AssemblyInfo.cs
+D:\UNIVERSITY\Extracurriculars\GAME DEV\CAT-Game-Dev\Week-2\obj\Debug\net9.0\Week-2.csproj.CoreCompileInputs.cache
+D:\UNIVERSITY\Extracurriculars\GAME DEV\CAT-Game-Dev\Week-2\obj\Debug\net9.0\Week-2.sourcelink.json
+D:\UNIVERSITY\Extracurriculars\GAME DEV\CAT-Game-Dev\Week-2\bin\Debug\net9.0\Week-2.exe
+D:\UNIVERSITY\Extracurriculars\GAME DEV\CAT-Game-Dev\Week-2\bin\Debug\net9.0\Week-2.deps.json
+D:\UNIVERSITY\Extracurriculars\GAME DEV\CAT-Game-Dev\Week-2\bin\Debug\net9.0\Week-2.runtimeconfig.json
+D:\UNIVERSITY\Extracurriculars\GAME DEV\CAT-Game-Dev\Week-2\bin\Debug\net9.0\Week-2.dll
+D:\UNIVERSITY\Extracurriculars\GAME DEV\CAT-Game-Dev\Week-2\bin\Debug\net9.0\Week-2.pdb
+D:\UNIVERSITY\Extracurriculars\GAME DEV\CAT-Game-Dev\Week-2\obj\Debug\net9.0\Week-2.dll
+D:\UNIVERSITY\Extracurriculars\GAME DEV\CAT-Game-Dev\Week-2\obj\Debug\net9.0\refint\Week-2.dll
+D:\UNIVERSITY\Extracurriculars\GAME DEV\CAT-Game-Dev\Week-2\obj\Debug\net9.0\Week-2.pdb
+D:\UNIVERSITY\Extracurriculars\GAME DEV\CAT-Game-Dev\Week-2\obj\Debug\net9.0\Week-2.genruntimeconfig.cache
+D:\UNIVERSITY\Extracurriculars\GAME DEV\CAT-Game-Dev\Week-2\obj\Debug\net9.0\ref\Week-2.dll
