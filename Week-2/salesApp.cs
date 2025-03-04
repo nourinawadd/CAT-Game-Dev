@@ -1,7 +1,78 @@
 ﻿using System;
 using System.Collections.Generic;
+using Models;
 class MainClass{
         public static void Main(string[] args){
-            Console.WriteLine("Hey");
+            Stock stock = new Stock();
+            Customers customers = new Customers();
+            List<Transaction> transactions = new List<Transaction>();
+
+            while(true)
+            {
+                Console.WriteLine("Sales Order Application");
+                Console.WriteLine("1. Data Entry");
+                Console.WriteLine("2. Sales Process");
+                Console.WriteLine("3. Print");
+                Console.WriteLine("4. Exit");
+                Console.Write("Choose an option: ");
+                
+                int choice = int.Parse(Console.ReadLine());
+
+                switch(choice){
+                    case 1:
+                        // data entry
+                        Console.WriteLine("1. Add New/Update/Delete Customer");
+                        Console.WriteLine("2. Add New/Update/Delete Product in Stock");
+                        Console.Write("Choose an option: ");
+                        int subChoice = int.Parse(Console.ReadLine());
+                        if (subChoice == 1) ManageCustomers(customers);
+                        else if (subChoice == 2) ManageStock(stock);
+                        break;
+
+                    case 2:
+                        // sales process
+                        Console.WriteLine("1. Add Transaction");
+                        Console.WriteLine("2. Update Order");
+                        Console.WriteLine("3. Pay Order");
+                        Console.Write("Choose an option: ");
+                        int salesChoice = int.Parse(Console.ReadLine());
+                        if (salesChoice == 1) AddTransaction(customers, stock, transactions);
+                        else if (salesChoice == 2) UpdateOrder(transactions);
+                        else if (salesChoice == 3) PayOrder(transactions);
+                        break;
+
+                    case 3:
+                        // print
+                        Console.WriteLine("1. Print Customers");
+                        Console.WriteLine("2. Print Stock Data");
+                        Console.WriteLine("3. Print Transactions");
+                        Console.Write("Choose an option: ");
+                        int printChoice = int.Parse(Console.ReadLine());
+                        if (printChoice == 1) customers.PrintCustomers();
+                        else if (printChoice == 2) Stock.PrintStock(stock);
+                        else if (printChoice == 3) PrintTransactions(transactions);
+                        break;
+
+                    case 4:
+                        // exit
+                        Console.WriteLine("Goodbye!");
+                        break;
+                    default:
+                        // invalid
+                        Console.WriteLine("Invalid option, try again.");
+                        break;
+                }
+            }
         }
+        public static void ManageCustomers(Customers customers){}
+
+        public static void ManageStock(Stock stock){}
+
+        public static void AddTransaction(Customers customers, Stock stock, List<Transaction> transactions){}
+
+        public static void UpdateOrder(List<Transaction> transactions){}
+
+        public static void PayOrder(List<Transaction> transactions){}
+
+        public static void PrintTransactions(List<Transaction> transactions){}
     }  

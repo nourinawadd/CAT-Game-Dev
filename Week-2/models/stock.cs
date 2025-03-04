@@ -1,40 +1,42 @@
-public class Stock
-    {
-        private List<Product> products = new List<Product>();
-        public int Count => products.Count;
-        public void AddProduct(Product product)
+namespace Models {
+    public class Stock
         {
-            products.Add(product);
-        }
-        public void EditProduct(int productId, string newName, double newPrice, int newStockQuantity)
-        {
-            Product product = products.Find(p => p.ProductID == productId);
-            if (product != null)
+            private List<Product> products = new List<Product>();
+            public int Count => products.Count;
+            public void AddProduct(Product product)
             {
-                product.Name = newName;
-                product.Price = newPrice;
-                product.StockQuantity = newStockQuantity;
+                products.Add(product);
             }
-            else
+            public void EditProduct(int productId, string newName, double newPrice, int newStockQuantity)
             {
-                Console.WriteLine("Product not found.");
+                Product product = products.Find(p => p.ProductID == productId);
+                if (product != null)
+                {
+                    product.Name = newName;
+                    product.Price = newPrice;
+                    product.StockQuantity = newStockQuantity;
+                }
+                else
+                {
+                    Console.WriteLine("Product not found.");
+                }
             }
-        }
-        public void DeleteProduct(int productId)
-        {
-            products.RemoveAll(p => p.ProductID == productId);
-        }
-        public int SearchProduct(int productId)
-        {
-            Product product = products.Find(p => p.ProductID == productId);
-            return product != null ? product.StockQuantity : -1;
-        }
-        public static void PrintStock(Stock stock)
-        {
-            Console.WriteLine("Stock Inventory:");
-            foreach (var product in stock.products)
+            public void DeleteProduct(int productId)
             {
-                Console.WriteLine(product);
+                products.RemoveAll(p => p.ProductID == productId);
             }
-        }
+            public int SearchProduct(int productId)
+            {
+                Product product = products.Find(p => p.ProductID == productId);
+                return product != null ? product.StockQuantity : -1;
+            }
+            public static void PrintStock(Stock stock)
+            {
+                Console.WriteLine("Stock Inventory:");
+                foreach (var product in stock.products)
+                {
+                    Console.WriteLine(product);
+                }
+            }
     }
+}
