@@ -1,19 +1,15 @@
 namespace Models {
     public class Customer {
             public int CustomerID { get; set; }
-            public string Name { get; set; }
-            public string Email { get; set; }
-            public string PhoneNumber { get; set; }     
+            public string Phone { get; set; }   
 
-            public Customer(int id, string name, string email, string phone){
+            public Customer(int id, string phone){
                 CustomerID = id;
-                Name = name;
-                Email = email;
-                PhoneNumber = phone;
+                Phone = phone;
             }
-            public override string ToString()
+            public virtual void Print()
             {
-                return $"ID: {CustomerID}, Name: {Name}, Email: {Email}, PhoneNumber: {PhoneNumber}";
+                Console.WriteLine($"Customer ID: {CustomerID}, Phone: {Phone}");
             }
         }
 }

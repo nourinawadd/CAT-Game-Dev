@@ -1,37 +1,45 @@
 namespace Models {
-    public class Customers{
-            private List<Customer> customerList = new List<Customer>();
-            public void AddCustomer(Customer customer){
-                customerList.Add(customer);
-            }
-            public void DeleteCustomer(int customerId)
-            {
-                customerList.RemoveAll(c => c.CustomerID == customerId);
-            }
-            public void EditCustomer(int customerId, string newName, string newEmail, string newPhone){
-                Customer customer = customerList.Find(c => c.CustomerID == customerId);
-                if (customer != null)
-                {
-                    customer.Name = newName;
-                    customer.Email = newEmail;
-                    customer.PhoneNumber = newPhone;
-                }
-                else
-                {
-                    Console.WriteLine("Customer not found.");
-                }
-            }
-            public void PrintCustomers(){
-                Console.WriteLine("Customer list: ");
-                foreach (var customer in customerList){
-                    Console.WriteLine(customer);
-                }
-            }
+    public class Customers
+    {
+        public int Count { get; private set; }
+        private List<Customer> customerList = new List<Customer>();
 
-            public Customer SearchCustomers(int customerId)
-            {
-                return customerList.Find(c => c.CustomerID == customerId);
-            }
+        public void AddCustomer(Customer customer)
+        {
+            customerList.Add(customer);
+            Count++;
+        }
 
+        public void EditCustomer(int id, string newPhone)
+        {
+            var customer = customerList.Find(c => c.CustomerID == id);
+            if (customer != null)
+            {
+                customer.Phone = newPhone;
+            }
+        }
+
+        public void DeleteCustomer(int id)
+        {
+            var customer = customerList.Find(c => c.CustomerID == id);
+            if (customer != null)
+            {
+                customerList.Remove(customer);
+                Count--;
+            }
+        }
+
+        public void Print()
+        {
+            Console.WriteLine($"Total Customers: {Count}");
+            foreach (var customer in customerList)
+            {
+                customer.Print();
+            }
+        }
+
+        public Customer SearchCustomers(int id){
+            return customerList.Find(c => c.CustomerID == id);
         }
     }
+}

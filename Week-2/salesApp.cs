@@ -48,7 +48,7 @@ class MainClass{
                         Console.WriteLine("3. Print Transactions");
                         Console.Write("Choose an option: ");
                         int printChoice = int.Parse(Console.ReadLine());
-                        if (printChoice == 1) customers.PrintCustomers();
+                        if (printChoice == 1) customers.Print();
                         else if (printChoice == 2) Stock.PrintStock(stock);
                         else if (printChoice == 3) PrintTransactions(transactions);
                         break;
@@ -78,11 +78,8 @@ class MainClass{
                     Console.Write("Enter customer's name: ");
                     string name = Console.ReadLine();
                     Console.Write("Enter customer's email: ");
-                    string email = Console.ReadLine();
-                    Console.Write("Enter customer's phone number: ");
-                    string number = Console.ReadLine();
 
-                    customers.AddCustomer(new Customer(id, name, email, number));
+                    customers.AddCustomer(new Customer(id, name));
                     Console.WriteLine("Added customer into system.");
                     break;
                 case 2: // EDIT CUSTOMER
@@ -91,11 +88,8 @@ class MainClass{
                     Console.Write("Enter new name: ");
                     string newName = Console.ReadLine();
                     Console.Write("Enter new email: ");
-                    string newEmail = Console.ReadLine();
-                    Console.Write("Enter new phone number: ");
-                    string newNumber = Console.ReadLine();
-
-                    customers.EditCustomer(newID, newName, newEmail, newNumber);
+                    
+                    customers.EditCustomer(newID, newName);
                     Console.WriteLine("Edited customer in system.");
                     break;
                 case 3: // DELETE CUSTOMER
