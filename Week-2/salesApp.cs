@@ -64,15 +64,89 @@ class MainClass{
                 }
             }
         }
-        public static void ManageCustomers(Customers customers){}
+        public static void ManageCustomers(Customers customers){
+            Console.WriteLine("1. Add Customer");
+            Console.WriteLine("2. Edit Customer");
+            Console.WriteLine("3. Delete Customer");
+            Console.Write("Choose an option: ");
+            int choice = int.Parse(Console.ReadLine());
+            
+            switch (choice) {
+                case 1: // ADD CUSTOMER
+                    Console.Write("Enter customer ID: ");
+                    int id = int.Parse(Console.ReadLine());
+                    Console.Write("Enter customer's name: ");
+                    string name = Console.ReadLine();
+                    Console.Write("Enter customer's email: ");
+                    string email = Console.ReadLine();
+                    Console.Write("Enter customer's phone number: ");
+                    string number = Console.ReadLine();
 
-        public static void ManageStock(Stock stock){}
+                    customers.AddCustomer(new Customer(id, name, email, number));
+                    Console.WriteLine("Added customer into system.");
+                    break;
+                case 2: // EDIT CUSTOMER
+                    Console.Write("Enter ID of customer to edit: ");
+                    int newID = int.Parse(Console.ReadLine());
+                    Console.Write("Enter new name: ");
+                    string newName = Console.ReadLine();
+                    Console.Write("Enter new email: ");
+                    string newEmail = Console.ReadLine();
+                    Console.Write("Enter new phone number: ");
+                    string newNumber = Console.ReadLine();
 
-        public static void AddTransaction(Customers customers, Stock stock, List<Transaction> transactions){}
+                    customers.EditCustomer(newID, newName, newEmail, newNumber);
+                    Console.WriteLine("Edited customer in system.");
+                    break;
+                case 3: // DELETE CUSTOMER
+                    Console.Write("Enter customer ID to delete: ");
+                    int deleteID = int.Parse(Console.ReadLine());
 
-        public static void UpdateOrder(List<Transaction> transactions){}
+                    customers.DeleteCustomer(new Customer(deleteID, "", "", ""));
+                    Console.WriteLine("Deleted customer in system");
+                    break;
+                default:
+                    // invalid
+                    break;
+            }
+        }
 
-        public static void PayOrder(List<Transaction> transactions){}
+        public static void ManageStock(Stock stock){
+            Console.WriteLine("1. Add Product");
+            Console.WriteLine("2. Edit Product");
+            Console.WriteLine("3. Delete Product");
+            Console.Write("Choose an option: ");
+            int choice = int.Parse(Console.ReadLine());
 
-        public static void PrintTransactions(List<Transaction> transactions){}
+            switch (choice) {
+                case 1:
+                    // add product
+                    break;
+                case 2:
+                    // edit product
+                    break;
+                case 3:
+                    // delete product
+                    break;
+                default:
+                    // invalid
+                    break;
+            }        
+        }
+
+        public static void AddTransaction(Customers customers, Stock stock, List<Transaction> transactions){
+
+        }
+
+        public static void UpdateOrder(List<Transaction> transactions){
+
+        }
+
+        public static void PayOrder(List<Transaction> transactions){
+
+        }
+
+        public static void PrintTransactions(List<Transaction> transactions){
+
+        }
     }  
