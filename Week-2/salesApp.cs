@@ -56,7 +56,7 @@ class MainClass{
                     case 4:
                         // exit
                         Console.WriteLine("Goodbye!");
-                        break;
+                        return;
                     default:
                         // invalid
                         Console.WriteLine("Invalid option, try again.");
@@ -102,7 +102,7 @@ class MainClass{
                     Console.Write("Enter customer ID to delete: ");
                     int deleteID = int.Parse(Console.ReadLine());
 
-                    customers.DeleteCustomer(new Customer(deleteID, "", "", ""));
+                    customers.DeleteCustomer(deleteID);
                     Console.WriteLine("Deleted customer in system");
                     break;
                 default:
@@ -119,14 +119,38 @@ class MainClass{
             int choice = int.Parse(Console.ReadLine());
 
             switch (choice) {
-                case 1:
-                    // add product
+                case 1: // ADD PRODUCT
+                    Console.Write("Enter product ID: ");
+                    int id = int.Parse(Console.ReadLine());
+                    Console.Write("Enter product name: ");
+                    string name = Console.ReadLine();
+                    Console.Write("Enter product price: ");
+                    double price = double.Parse(Console.ReadLine());                  
+                    Console.Write("Enter product's stock quantity: ");
+                    int quantity = int.Parse(Console.ReadLine());
+
+                    stock.AddProduct(new Product(id, name, price, quantity));
+                    Console.WriteLine("Product added into inventory.");
                     break;
-                case 2:
-                    // edit product
+                case 2: // EDIT PRODUCT
+                    Console.Write("Enter product ID to edit: ");
+                    int newID = int.Parse(Console.ReadLine());
+                    Console.Write("Enter new name: ");
+                    string newName = Console.ReadLine();
+                    Console.Write("Enter new price: ");
+                    double newPrice = double.Parse(Console.ReadLine());                  
+                    Console.Write("Enter new stock quantity: ");
+                    int newQuantity = int.Parse(Console.ReadLine());
+
+                    stock.EditProduct(newID, newName, newPrice, newQuantity);
+                    Console.WriteLine("Product edited in inventory.");
                     break;
-                case 3:
-                    // delete product
+                case 3: // DELETE PRODUCT
+                    Console.Write("Enter product ID to delete: ");
+                    int deleteID = int.Parse(Console.ReadLine());
+
+                    stock.DeleteProduct(deleteID);
+                    Console.WriteLine("Product deleted from inventory.");
                     break;
                 default:
                     // invalid

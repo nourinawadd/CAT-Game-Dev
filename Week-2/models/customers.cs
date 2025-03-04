@@ -4,8 +4,9 @@ namespace Models {
             public void AddCustomer(Customer customer){
                 customerList.Add(customer);
             }
-            public void DeleteCustomer(Customer customer){
-                customerList.Remove(customer);
+            public void DeleteCustomer(int customerId)
+            {
+                customerList.RemoveAll(c => c.CustomerID == customerId);
             }
             public void EditCustomer(int customerId, string newName, string newEmail, string newPhone){
                 Customer customer = customerList.Find(c => c.CustomerID == customerId);
