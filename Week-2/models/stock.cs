@@ -7,7 +7,7 @@ namespace Models {
             {
                 products.Add(product);
             }
-            public void EditProduct(int productId, string newName, double newPrice, int newStockQuantity)
+            public void EditProduct(int productId, string newName, decimal newPrice, int newStockQuantity)
             {
                 Product product = products.Find(p => p.ProductID == productId);
                 if (product != null)
@@ -25,10 +25,9 @@ namespace Models {
             {
                 products.RemoveAll(p => p.ProductID == productId);
             }
-            public int SearchProduct(int productId)
+            public Product SearchProduct(int productId)
             {
-                Product product = products.Find(p => p.ProductID == productId);
-                return product != null ? product.StockQuantity : -1;
+                return products.Find(p => p.ProductID == productId);
             }
             public static void PrintStock(Stock stock)
             {

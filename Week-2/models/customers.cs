@@ -27,5 +27,11 @@ namespace Models {
                     Console.WriteLine(customer);
                 }
             }
+
+            public Customer SearchCustomers(int customerId)
+            {
+                return customerList.Find(c => c.CustomerID == customerId);
+            }
+
         }
     }

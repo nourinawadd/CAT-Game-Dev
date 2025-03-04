@@ -125,7 +125,7 @@ class MainClass{
                     Console.Write("Enter product name: ");
                     string name = Console.ReadLine();
                     Console.Write("Enter product price: ");
-                    double price = double.Parse(Console.ReadLine());                  
+                    decimal price = decimal.Parse(Console.ReadLine());                  
                     Console.Write("Enter product's stock quantity: ");
                     int quantity = int.Parse(Console.ReadLine());
 
@@ -138,7 +138,7 @@ class MainClass{
                     Console.Write("Enter new name: ");
                     string newName = Console.ReadLine();
                     Console.Write("Enter new price: ");
-                    double newPrice = double.Parse(Console.ReadLine());                  
+                    decimal newPrice = decimal.Parse(Console.ReadLine());                  
                     Console.Write("Enter new stock quantity: ");
                     int newQuantity = int.Parse(Console.ReadLine());
 
@@ -159,7 +159,47 @@ class MainClass{
         }
 
         public static void AddTransaction(Customers customers, Stock stock, List<Transaction> transactions){
+            Console.Write("Enter customer ID: ");
+            int customerId = int.Parse(Console.ReadLine());
+            Customer customer = customers.SearchCustomers(customerId);
+            if (customer == null) {
+                Console.WriteLine("Customer not found.");
+                return;
+            }
 
+            Console.Write("Enter product ID: ");
+            int productId = int.Parse(Console.ReadLine());
+            Product product = stock.SearchProduct(productId);
+            if (product == null) {
+                Console.WriteLine("Product not found.");
+                return;
+            }
+
+            Console.Write("Enter quantity: ");
+            int quantity = int.Parse(Console.ReadLine());
+            if (quantity > product.StockQuantity) {
+                Console.WriteLine("Not enough stock available.");
+                return;
+            }
+
+            Console.WriteLine("Enter order status: (New/Hold/Paid/Cancelled)");
+            Order.OrderStatus status = (Order.OrderStatus)Enum.Parse(typeof(Order.OrderStatus), Console.ReadLine(), true);
+
+            Console.Write("Enter payment amount: ");
+            decimal amount = decimal.Parse(Console.ReadLine());
+
+            Console.WriteLine("Enter payment type (Credit/Cash/Check): ");
+            Payment.PaymentType type = (Payment.PaymentType)Enum.Parse(typeof(Payment.PaymentType), Console.ReadLine(), true);
+
+            OrderItem item = new OrderItem(product, quantity, product.Price * quantity);
+            Order order = new Order(status, amount);
+            Payment payment = new Payment(type, amount);
+
+            Transaction transaction = new Transaction();
+            transaction += (order, payment);
+            transactions.Add(transaction);
+
+            Console.WriteLine("Transaction added successfully.");
         }
 
         public static void UpdateOrder(List<Transaction> transactions){
@@ -167,7 +207,6 @@ class MainClass{
         }
 
         public static void PayOrder(List<Transaction> transactions){
-
         }
 
         public static void PrintTransactions(List<Transaction> transactions){
