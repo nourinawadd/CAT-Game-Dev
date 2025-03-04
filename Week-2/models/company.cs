@@ -3,8 +3,8 @@ namespace Models {
             public string Location { get; set; }
             public string CompanyName { get; set; }
 
-            public Company(int id, string name, string location, string companyName) 
-                : base(id, name) 
+            public Company(int id, string phone, string location, string companyName) 
+                : base(id, phone) 
             {
                 Location = location;
                 CompanyName = companyName;

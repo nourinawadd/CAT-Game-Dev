@@ -73,24 +73,81 @@ class MainClass{
             
             switch (choice) {
                 case 1: // ADD CUSTOMER
-                    Console.Write("Enter customer ID: ");
-                    int id = int.Parse(Console.ReadLine());
-                    Console.Write("Enter customer's name: ");
-                    string name = Console.ReadLine();
-                    Console.Write("Enter customer's email: ");
+                    Console.WriteLine("1. Company");
+                    Console.WriteLine("2. Person");
+                    Console.Write("Enter type of customer: ");
+                    int subchoice1 = int.Parse(Console.ReadLine());
 
-                    customers.AddCustomer(new Customer(id, name));
-                    Console.WriteLine("Added customer into system.");
+                    switch(subchoice1) {
+                        case 1: // ADD COMPANY
+                            Console.Write("Enter company ID: ");
+                            int cid = int.Parse(Console.ReadLine());
+                            Console.Write("Enter company name: ");
+                            string cname = Console.ReadLine();
+                            Console.Write("Enter company phone number: ");
+                            string cphone = Console.ReadLine();
+                            Console.Write("Enter company location: ");
+                            string clocation = Console.ReadLine();
+
+                            customers.AddCustomer(new Company(cid, cphone, clocation, cname));
+                            Console.WriteLine("Added company into system.");
+                            break;
+                        case 2: // ADD PERSON
+                            Console.Write("Enter person ID: ");
+                            int pid = int.Parse(Console.ReadLine());
+                            Console.Write("Enter person's full name: ");
+                            string pname = Console.ReadLine();
+                            Console.Write("Enter person's phone number: ");
+                            string pphone = Console.ReadLine();
+                            Console.Write("Enter person's billing address: ");
+                            string pbilling = Console.ReadLine();
+
+                            customers.AddCustomer(new Person(pid, pphone, pbilling, pname));
+                            Console.WriteLine("Added person into system.");
+                            break;
+                        default:
+                            Console.WriteLine("Invalid choice.");
+                            break;
+                    }
                     break;
+
                 case 2: // EDIT CUSTOMER
-                    Console.Write("Enter ID of customer to edit: ");
-                    int newID = int.Parse(Console.ReadLine());
-                    Console.Write("Enter new name: ");
-                    string newName = Console.ReadLine();
-                    Console.Write("Enter new email: ");
-                    
-                    customers.EditCustomer(newID, newName);
-                    Console.WriteLine("Edited customer in system.");
+                    Console.WriteLine("1. Company");
+                    Console.WriteLine("2. Person");
+                    Console.Write("Enter type of customer: ");
+                    int subchoice2 = int.Parse(Console.ReadLine());
+
+                    switch(subchoice2){
+                        case 1: // EDIT COMPANY
+                            Console.Write("Enter company ID to edit: ");
+                            int ncid = int.Parse(Console.ReadLine());
+                            Console.Write("Enter new company name: ");
+                            string ncname = Console.ReadLine();
+                            Console.Write("Enter new company phone number: ");
+                            string ncphone = Console.ReadLine();
+                            Console.Write("Enter new company location: ");
+                            string nclocation = Console.ReadLine();
+
+                            customers.EditCustomer(ncid, ncphone, ncname, nclocation);
+                            Console.WriteLine("Edited company in system.");
+                            break;
+                        case 2: // EDIT PERSON
+                            Console.Write("Enter person ID to edit: ");
+                            int npid = int.Parse(Console.ReadLine());
+                            Console.Write("Enter new person's full name: ");
+                            string npname = Console.ReadLine();
+                            Console.Write("Enter new person's phone number: ");
+                            string npphone = Console.ReadLine();
+                            Console.Write("Enter new person's billing address: ");
+                            string npbilling = Console.ReadLine();
+
+                            customers.EditCustomer(npid, npphone, npname, npbilling);
+                            Console.WriteLine("Edited person in system.");
+                            break;
+                        default:
+                            Console.WriteLine("Invalid choice.");
+                            break;
+                    }
                     break;
                 case 3: // DELETE CUSTOMER
                     Console.Write("Enter customer ID to delete: ");
