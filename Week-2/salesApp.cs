@@ -236,15 +236,8 @@ class MainClass{
             Console.WriteLine("Enter order status: (New/Hold/Paid/Cancelled)");
             Order.OrderStatus status = (Order.OrderStatus)Enum.Parse(typeof(Order.OrderStatus), Console.ReadLine(), true);
 
-            Console.Write("Enter payment amount: ");
-            decimal amount = decimal.Parse(Console.ReadLine());
-
-            Console.WriteLine("Enter payment type (Credit/Cash/Check): ");
-            Payment.PaymentType type = (Payment.PaymentType)Enum.Parse(typeof(Payment.PaymentType), Console.ReadLine(), true);
-
-            OrderItem item = new OrderItem(product, quantity, product.Price * quantity);
-            Order order = new Order(status, amount);
-            Payment payment = new Payment(type, amount);
+            OrderItem item = new OrderItem(product, quantity);
+            Order order = new Order(customerId, status);
 
             Transaction transaction = new Transaction();
             transaction += (order, payment);

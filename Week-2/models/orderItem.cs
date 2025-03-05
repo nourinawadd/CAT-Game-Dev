@@ -2,12 +2,12 @@ namespace Models {
     public class OrderItem {
             public Product Product { get; set; }
             public int Quantity { get; set; }
-            public decimal SalePrice { get; set; }
+            public decimal SalePrice { get; private set; }
 
-            public OrderItem(Product product, int quantity, decimal price) {
+            public OrderItem(Product product, int quantity) {
                 Product = product;
                 Quantity = quantity;
-                SalePrice = price;
+                SalePrice = product.Price * quantity;
             }
 
             public static OrderItem operator ++(OrderItem item) {

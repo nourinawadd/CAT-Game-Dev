@@ -37,5 +37,17 @@ namespace Models {
                     Console.WriteLine(product);
                 }
             }
+            public int GetQuantity(int productId)
+            {
+                Product product = products.Find(p => p.ProductID == productId);
+                if (product != null)
+                {
+                    return product.StockQuantity;
+                }
+                else
+                {
+                    return -1;
+                }
+            }
     }
 }

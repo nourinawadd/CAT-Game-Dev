@@ -1,8 +1,9 @@
 namespace Models {    
     public class Order {
+            public int CustomerID { get; set; } 
             public int OrderNumber { get; private set; }
             public DateTime OrderDate { get; set; }
-            public decimal TotalAmount { get; set; }
+            public decimal TotalAmount { get; private set; }
             public OrderStatus Status { get; set; }
             public enum OrderStatus {
                 New,
@@ -11,11 +12,17 @@ namespace Models {
                 Cancelled
             }
 
-            public Order(OrderStatus status, decimal totalAmount) {
+            public List<OrderItem> OrderItems = new List<OrderItem>();
+
+            public Order(int customerId, OrderStatus status) {
+                CustomerID = customerId;
                 OrderNumber = new Random().Next(1, 100000);
                 OrderDate = DateTime.Now;
-                TotalAmount = totalAmount;
                 Status = status;
+            }
+
+            public void AddItem(OrderItem item) {
+                OrderItems.Add(item);
             }
 
             public void UpdateOrder(OrderStatus newStatus) {
