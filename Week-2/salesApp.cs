@@ -233,27 +233,70 @@ class MainClass{
                 return;
             }
 
-            Console.WriteLine("Enter order status: (New/Hold/Paid/Cancelled)");
-            Order.OrderStatus status = (Order.OrderStatus)Enum.Parse(typeof(Order.OrderStatus), Console.ReadLine(), true);
+            Console.Write("Enter order status (New/Hold/Paid/Cancelled): ");
+            if (!Enum.TryParse(Console.ReadLine(), true, out Order.OrderStatus status)) {
+                Console.WriteLine("Invalid status.");
+                return;
+            }
 
             OrderItem item = new OrderItem(product, quantity);
             Order order = new Order(customerId, status);
+            order.AddItem(item);
 
-            Transaction transaction = new Transaction();
-            transaction += (order, payment);
+            Transaction transaction = new Transaction(customerId, status);
             transactions.Add(transaction);
 
             Console.WriteLine("Transaction added successfully.");
         }
 
         public static void UpdateOrder(List<Transaction> transactions){
+            Console.Write("Enter customer ID to update: ");
+            int custId = int.Parse(Console.ReadLine());
 
+            Transaction transaction = transactions.Find(t => t.CustomerID == custId);
+            if (transaction == null) {
+                Console.WriteLine("Transaction not found.");
+                return;
+            }
+
+            Console.Write("Enter new order status (New/Hold/Paid/Cancelled): ");
+            if (!Enum.TryParse(Console.ReadLine(), true, out Order.OrderStatus newStatus)) {
+                Console.WriteLine("Invalid status.");
+                return;
+            }
+
+            transaction.Order.Status = newStatus;
+            Console.WriteLine("Order updated successfully.");
         }
 
         public static void PayOrder(List<Transaction> transactions){
+            Console.Write("Enter customer ID to mark your order as paid: ");
+            int custId = int.Parse(Console.ReadLine());
+
+            Transaction transaction = transactions.Find(t => t.CustomerID == custId);
+            if (transaction == null) {
+                Console.WriteLine("Transaction not found.");
+                return;
+            }
+
+            if (transaction.Order.Status != Order.OrderStatus.New) {
+                Console.WriteLine("Only new orders can be paid.");
+                return;
+            }
+
+            transaction.Order.Status = Order.OrderStatus.Paid;
+            Console.WriteLine("Order marked as paid.");
         }
 
         public static void PrintTransactions(List<Transaction> transactions){
+            if (transactions.Count == 0) {
+                Console.WriteLine("No transactions available.");
+                return;
+            }
 
+            foreach (var transaction in transactions) {
+                Console.WriteLine(transaction);
+            }
         }
+
     }  

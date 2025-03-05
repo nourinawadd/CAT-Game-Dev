@@ -1,18 +1,38 @@
 namespace Models {
     public class Transaction {
-        public List<Order> Orders = new List<Order>();
+        public int CustomerID { get; private set; }
+        public DateTime TransactionDate { get; private set; }
+        public Order Order { get; private set; }
         public List<Payment> Payments = new List<Payment>();
 
-        public static Transaction operator +(Transaction transaction, (Order order, Payment payment) data){
-            transaction.Orders.Add(data.order);
-            transaction.Payments.Add(data.payment);
-            return transaction;
+        public Transaction(int customerId, Order.OrderStatus status) {
+            CustomerID = customerId;
+            TransactionDate = DateTime.Now;
+            Order = new Order(customerId, status);
+        }
+
+        public void AddPayment(Payment payment) {
+            Payments.Add(payment);
+            UpdateOrderStatus();
+        }
+
+        public decimal GetTotalPaid() {
+            return Payments.Sum(p => (decimal)p.Amount);
+        }
+
+        public decimal GetTotalAmount() {
+            return Order.OrderItems.Sum(item => item.SalePrice);
+        }
+
+        private void UpdateOrderStatus() {
+            if (GetTotalPaid() >= GetTotalAmount()) {
+                Order.Status = Order.OrderStatus.Paid;
+            }
         }
 
         public override string ToString() {
-            string orderDetails = string.Join("\n", Orders);
-            string paymentDetails = string.Join("\n", Payments);
-            return $"Orders:\n {orderDetails} \nPayments:\n {paymentDetails}";
+            return $"Customer ID: {CustomerID}, Date: {TransactionDate}, " +
+                   $"Total: {GetTotalAmount():C}, Paid: {GetTotalPaid():C}, Status: {Order.Status}";
         }
     }
 }
