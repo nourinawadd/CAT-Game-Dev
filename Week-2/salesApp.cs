@@ -35,7 +35,7 @@ class MainClass{
                         Console.WriteLine("3. Pay Order");
                         Console.Write("Choose an option: ");
                         int salesChoice = Convert.ToInt32(Console.ReadLine());
-                        if (salesChoice == 1) AddTransaction(customers, stock);
+                        if (salesChoice == 1) AddTransaction(customers, stock, transactions);
                         else if (salesChoice == 2) UpdateOrder(transactions, stock);
                         else if (salesChoice == 3) PayOrder(transactions);
                         break;
@@ -207,7 +207,7 @@ class MainClass{
             }        
         }
 
-        public static void AddTransaction(Customers customers, Stock stock){
+        public static void AddTransaction(Customers customers, Stock stock, List<Transaction> transactions){
             Console.Write("Enter customer ID: ");
             int customerId = Convert.ToInt32(Console.ReadLine());
             Customer customer = customers.SearchCustomers(customerId);
@@ -244,7 +244,7 @@ class MainClass{
 
             Transaction transaction = new Transaction(customerId, status);
             transaction.AddOrder(order);
-
+            transactions.Add(transaction);
             Console.WriteLine("Order placed successfully.");
         }
 
@@ -296,7 +296,10 @@ class MainClass{
                 Console.WriteLine("Transaction not found.");
                 return;
             }
-
+            if (transaction.Order.Status == Order.OrderStatus.Paid) {
+                Console.WriteLine("Order is already paid.");
+                return;
+            }
             Console.WriteLine("1. Cash");
             Console.WriteLine("2. Credit");
             Console.WriteLine("3. Check");
@@ -304,19 +307,42 @@ class MainClass{
             int subchoice = Convert.ToInt32(Console.ReadLine());
             switch(subchoice){
                 case 1: // CASH
-                    double amount = transaction.GetTotalAmount();
-                    Console.Write($"Enter cash value (total amount = {amount:C2}): ");
+                    double cashAmount = transaction.GetTotalAmount();
+                    Console.Write($"Enter cash value (total amount = {cashAmount:C2}): ");
                     double value = Convert.ToDouble(Console.ReadLine());
-                    Cash cash = new Cash(amount, amount, custId);
+
+                    Cash cash = new Cash(cashAmount, value, custId);
                     transaction.AddPayment(cash);
                     break;       
                 case 2: // CREDIT
+                    double creditAmount = transaction.GetTotalAmount();
+                    Console.Write("Enter card number: ");
+                    string? number = Console.ReadLine();
+                    Console.Write("Enter expiry date (MM/YY): ");
+                    DateOnly expiry;
+                    while (!DateOnly.TryParse(Console.ReadLine(), out expiry)) {
+                        Console.Write("Invalid date. Enter again (MM/YY): ");
+                    }
+                    Console.Write("Enter card type (Visa, Mastercard, etc.): ");
+                    string? type = Console.ReadLine();
+
+                    Credit credit = new Credit(creditAmount, number, expiry, type, custId);
+                    transaction.AddPayment(credit);
+                    break;
                 case 3: // CHECK
+                    double checkAmount = transaction.GetTotalAmount();
+                    Console.Write("Enter account holder name: ");
+                    string? name = Console.ReadLine();
+                    Console.Write("Enter Bank ID: ");
+                    string? bankId = Console.ReadLine();
+
+                    Check check = new Check(checkAmount, name, bankId, custId);
+                    transaction.AddPayment(check);
+                    break;
                 default:
                     Console.WriteLine("Invalid choice.");
                     break;
             }
-
             transaction.Order.Status = Order.OrderStatus.Paid;
             Console.WriteLine("Order marked as paid.");
         }
@@ -326,10 +352,8 @@ class MainClass{
                 Console.WriteLine("No transactions available.");
                 return;
             }
-
             foreach (var transaction in transactions) {
                 Console.WriteLine(transaction);
             }
         }
-
     }  
