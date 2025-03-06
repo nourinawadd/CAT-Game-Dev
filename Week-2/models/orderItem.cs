@@ -1,10 +1,12 @@
 namespace Models {
     public class OrderItem {
+            public int CustomerID { get; set; }
             public Product Product { get; set; }
             public int Quantity { get; set; }
-            public decimal SalePrice { get; private set; }
+            public double SalePrice { get; private set; }
 
-            public OrderItem(Product product, int quantity) {
+            public OrderItem(int customerId, Product product, int quantity) {
+                CustomerID = customerId;
                 Product = product;
                 Quantity = quantity;
                 SalePrice = product.Price * quantity;

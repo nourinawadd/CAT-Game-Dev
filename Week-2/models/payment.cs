@@ -9,5 +9,7 @@ namespace Models {
             CustomerID = customerId;
             PaymentDate = DateTime.Now;
         }
+
+        
     }
 }

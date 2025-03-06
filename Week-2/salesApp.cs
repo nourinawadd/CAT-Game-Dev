@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Runtime.CompilerServices;
 using Models;
 class MainClass{
         public static void Main(string[] args){
@@ -16,38 +17,35 @@ class MainClass{
                 Console.WriteLine("4. Exit");
                 Console.Write("Choose an option: ");
                 
-                int choice = int.Parse(Console.ReadLine());
+                int choice = Convert.ToInt32(Console.ReadLine());
 
                 switch(choice){
-                    case 1:
-                        // data entry
+                    case 1: // DATA ENTRY
                         Console.WriteLine("1. Add New/Update/Delete Customer");
                         Console.WriteLine("2. Add New/Update/Delete Product in Stock");
                         Console.Write("Choose an option: ");
-                        int subChoice = int.Parse(Console.ReadLine());
+                        int subChoice = Convert.ToInt32(Console.ReadLine());
                         if (subChoice == 1) ManageCustomers(customers);
                         else if (subChoice == 2) ManageStock(stock);
                         break;
 
-                    case 2:
-                        // sales process
+                    case 2: // SALES PROCESS
                         Console.WriteLine("1. Add Transaction");
                         Console.WriteLine("2. Update Order");
                         Console.WriteLine("3. Pay Order");
                         Console.Write("Choose an option: ");
-                        int salesChoice = int.Parse(Console.ReadLine());
-                        if (salesChoice == 1) AddTransaction(customers, stock, transactions);
-                        else if (salesChoice == 2) UpdateOrder(transactions);
+                        int salesChoice = Convert.ToInt32(Console.ReadLine());
+                        if (salesChoice == 1) AddTransaction(customers, stock);
+                        else if (salesChoice == 2) UpdateOrder(transactions, stock);
                         else if (salesChoice == 3) PayOrder(transactions);
                         break;
 
-                    case 3:
-                        // print
+                    case 3: // PRINT
                         Console.WriteLine("1. Print Customers");
                         Console.WriteLine("2. Print Stock Data");
                         Console.WriteLine("3. Print Transactions");
                         Console.Write("Choose an option: ");
-                        int printChoice = int.Parse(Console.ReadLine());
+                        int printChoice = Convert.ToInt32(Console.ReadLine());
                         if (printChoice == 1) customers.Print();
                         else if (printChoice == 2) Stock.PrintStock(stock);
                         else if (printChoice == 3) PrintTransactions(transactions);
@@ -69,38 +67,38 @@ class MainClass{
             Console.WriteLine("2. Edit Customer");
             Console.WriteLine("3. Delete Customer");
             Console.Write("Choose an option: ");
-            int choice = int.Parse(Console.ReadLine());
+            int choice = Convert.ToInt32(Console.ReadLine());
             
             switch (choice) {
                 case 1: // ADD CUSTOMER
                     Console.WriteLine("1. Company");
                     Console.WriteLine("2. Person");
                     Console.Write("Enter type of customer: ");
-                    int subchoice1 = int.Parse(Console.ReadLine());
+                    int subchoice1 = Convert.ToInt32(Console.ReadLine());
 
                     switch(subchoice1) {
                         case 1: // ADD COMPANY
                             Console.Write("Enter company ID: ");
-                            int cid = int.Parse(Console.ReadLine());
+                            int cid = Convert.ToInt32(Console.ReadLine());
                             Console.Write("Enter company name: ");
-                            string cname = Console.ReadLine();
+                            string? cname = Console.ReadLine();
                             Console.Write("Enter company phone number: ");
-                            string cphone = Console.ReadLine();
+                            string? cphone = Console.ReadLine();
                             Console.Write("Enter company location: ");
-                            string clocation = Console.ReadLine();
+                            string? clocation = Console.ReadLine();
 
                             customers.AddCustomer(new Company(cid, cphone, clocation, cname));
                             Console.WriteLine("Added company into system.");
                             break;
                         case 2: // ADD PERSON
                             Console.Write("Enter person ID: ");
-                            int pid = int.Parse(Console.ReadLine());
+                            int pid = Convert.ToInt32(Console.ReadLine());
                             Console.Write("Enter person's full name: ");
-                            string pname = Console.ReadLine();
+                            string? pname = Console.ReadLine();
                             Console.Write("Enter person's phone number: ");
-                            string pphone = Console.ReadLine();
+                            string? pphone = Console.ReadLine();
                             Console.Write("Enter person's billing address: ");
-                            string pbilling = Console.ReadLine();
+                            string? pbilling = Console.ReadLine();
 
                             customers.AddCustomer(new Person(pid, pphone, pbilling, pname));
                             Console.WriteLine("Added person into system.");
@@ -115,31 +113,31 @@ class MainClass{
                     Console.WriteLine("1. Company");
                     Console.WriteLine("2. Person");
                     Console.Write("Enter type of customer: ");
-                    int subchoice2 = int.Parse(Console.ReadLine());
+                    int subchoice2 = Convert.ToInt32(Console.ReadLine());
 
                     switch(subchoice2){
                         case 1: // EDIT COMPANY
                             Console.Write("Enter company ID to edit: ");
-                            int ncid = int.Parse(Console.ReadLine());
+                            int ncid = Convert.ToInt32(Console.ReadLine());
                             Console.Write("Enter new company name: ");
-                            string ncname = Console.ReadLine();
+                            string? ncname = Console.ReadLine();
                             Console.Write("Enter new company phone number: ");
-                            string ncphone = Console.ReadLine();
+                            string? ncphone = Console.ReadLine();
                             Console.Write("Enter new company location: ");
-                            string nclocation = Console.ReadLine();
+                            string? nclocation = Console.ReadLine();
 
                             customers.EditCustomer(ncid, ncphone, ncname, nclocation);
                             Console.WriteLine("Edited company in system.");
                             break;
                         case 2: // EDIT PERSON
                             Console.Write("Enter person ID to edit: ");
-                            int npid = int.Parse(Console.ReadLine());
+                            int npid = Convert.ToInt32(Console.ReadLine());
                             Console.Write("Enter new person's full name: ");
-                            string npname = Console.ReadLine();
+                            string? npname = Console.ReadLine();
                             Console.Write("Enter new person's phone number: ");
-                            string npphone = Console.ReadLine();
+                            string? npphone = Console.ReadLine();
                             Console.Write("Enter new person's billing address: ");
-                            string npbilling = Console.ReadLine();
+                            string? npbilling = Console.ReadLine();
 
                             customers.EditCustomer(npid, npphone, npname, npbilling);
                             Console.WriteLine("Edited person in system.");
@@ -151,7 +149,7 @@ class MainClass{
                     break;
                 case 3: // DELETE CUSTOMER
                     Console.Write("Enter customer ID to delete: ");
-                    int deleteID = int.Parse(Console.ReadLine());
+                    int deleteID = Convert.ToInt32(Console.ReadLine());
 
                     customers.DeleteCustomer(deleteID);
                     Console.WriteLine("Deleted customer in system");
@@ -167,38 +165,38 @@ class MainClass{
             Console.WriteLine("2. Edit Product");
             Console.WriteLine("3. Delete Product");
             Console.Write("Choose an option: ");
-            int choice = int.Parse(Console.ReadLine());
+            int choice = Convert.ToInt32(Console.ReadLine());
 
             switch (choice) {
                 case 1: // ADD PRODUCT
                     Console.Write("Enter product ID: ");
-                    int id = int.Parse(Console.ReadLine());
+                    int id = Convert.ToInt32(Console.ReadLine());
                     Console.Write("Enter product name: ");
-                    string name = Console.ReadLine();
+                    string? name = Console.ReadLine();
                     Console.Write("Enter product price: ");
-                    decimal price = decimal.Parse(Console.ReadLine());                  
+                    double price = Convert.ToDouble(Console.ReadLine());                  
                     Console.Write("Enter product's stock quantity: ");
-                    int quantity = int.Parse(Console.ReadLine());
+                    int quantity = Convert.ToInt32(Console.ReadLine());
 
                     stock.AddProduct(new Product(id, name, price, quantity));
                     Console.WriteLine("Product added into inventory.");
                     break;
                 case 2: // EDIT PRODUCT
                     Console.Write("Enter product ID to edit: ");
-                    int newID = int.Parse(Console.ReadLine());
+                    int newID = Convert.ToInt32(Console.ReadLine());
                     Console.Write("Enter new name: ");
-                    string newName = Console.ReadLine();
+                    string? newName = Console.ReadLine();
                     Console.Write("Enter new price: ");
-                    decimal newPrice = decimal.Parse(Console.ReadLine());                  
+                    double newPrice = Convert.ToDouble(Console.ReadLine());                  
                     Console.Write("Enter new stock quantity: ");
-                    int newQuantity = int.Parse(Console.ReadLine());
+                    int newQuantity = Convert.ToInt32(Console.ReadLine());
 
                     stock.EditProduct(newID, newName, newPrice, newQuantity);
                     Console.WriteLine("Product edited in inventory.");
                     break;
                 case 3: // DELETE PRODUCT
                     Console.Write("Enter product ID to delete: ");
-                    int deleteID = int.Parse(Console.ReadLine());
+                    int deleteID = Convert.ToInt32(Console.ReadLine());
 
                     stock.DeleteProduct(deleteID);
                     Console.WriteLine("Product deleted from inventory.");
@@ -209,27 +207,12 @@ class MainClass{
             }        
         }
 
-        public static void AddTransaction(Customers customers, Stock stock, List<Transaction> transactions){
+        public static void AddTransaction(Customers customers, Stock stock){
             Console.Write("Enter customer ID: ");
-            int customerId = int.Parse(Console.ReadLine());
+            int customerId = Convert.ToInt32(Console.ReadLine());
             Customer customer = customers.SearchCustomers(customerId);
             if (customer == null) {
                 Console.WriteLine("Customer not found.");
-                return;
-            }
-
-            Console.Write("Enter product ID: ");
-            int productId = int.Parse(Console.ReadLine());
-            Product product = stock.SearchProduct(productId);
-            if (product == null) {
-                Console.WriteLine("Product not found.");
-                return;
-            }
-
-            Console.Write("Enter quantity: ");
-            int quantity = int.Parse(Console.ReadLine());
-            if (quantity > product.StockQuantity) {
-                Console.WriteLine("Not enough stock available.");
                 return;
             }
 
@@ -239,23 +222,39 @@ class MainClass{
                 return;
             }
 
-            OrderItem item = new OrderItem(product, quantity);
             Order order = new Order(customerId, status);
+
+            Console.Write("Enter product ID: ");
+            int productId = Convert.ToInt32(Console.ReadLine());
+            Product product = stock.SearchProduct(productId);
+            if (product == null) {
+                Console.WriteLine("Product not found.");
+                return;
+            }
+
+            Console.Write("Enter quantity: ");
+            int quantity = Convert.ToInt32(Console.ReadLine());
+            if (quantity > product.StockQuantity) {
+                Console.WriteLine("Not enough stock available.");
+                return;
+            }
+
+            OrderItem item = new OrderItem(customerId, product, quantity);
             order.AddItem(item);
 
             Transaction transaction = new Transaction(customerId, status);
-            transactions.Add(transaction);
+            transaction.AddOrder(order);
 
-            Console.WriteLine("Transaction added successfully.");
+            Console.WriteLine("Order placed successfully.");
         }
 
-        public static void UpdateOrder(List<Transaction> transactions){
+        public static void UpdateOrder(List<Transaction> transactions, Stock stock){
             Console.Write("Enter customer ID to update: ");
-            int custId = int.Parse(Console.ReadLine());
+            int custId = Convert.ToInt32(Console.ReadLine());
 
             Transaction transaction = transactions.Find(t => t.CustomerID == custId);
             if (transaction == null) {
-                Console.WriteLine("Transaction not found.");
+                Console.WriteLine("Order not found.");
                 return;
             }
 
@@ -266,12 +265,31 @@ class MainClass{
             }
 
             transaction.Order.Status = newStatus;
+
+            Console.Write("Enter new product ID: ");
+            int productId = Convert.ToInt32(Console.ReadLine());
+            Product product = stock.SearchProduct(productId);
+            if (product == null) {
+                Console.WriteLine("Product not found.");
+                return;
+            }
+
+            Console.Write("Enter quantity: ");
+            int quantity = Convert.ToInt32(Console.ReadLine());
+            if (quantity > product.StockQuantity) {
+                Console.WriteLine("Not enough stock available.");
+                return;
+            }
+
+            OrderItem item = new OrderItem(custId, product, quantity);
+            transaction.Order.AddItem(item);
+
             Console.WriteLine("Order updated successfully.");
         }
 
         public static void PayOrder(List<Transaction> transactions){
-            Console.Write("Enter customer ID to mark your order as paid: ");
-            int custId = int.Parse(Console.ReadLine());
+            Console.Write("Enter customer ID: ");
+            int custId = Convert.ToInt32(Console.ReadLine());
 
             Transaction transaction = transactions.Find(t => t.CustomerID == custId);
             if (transaction == null) {
@@ -279,9 +297,24 @@ class MainClass{
                 return;
             }
 
-            if (transaction.Order.Status != Order.OrderStatus.New) {
-                Console.WriteLine("Only new orders can be paid.");
-                return;
+            Console.WriteLine("1. Cash");
+            Console.WriteLine("2. Credit");
+            Console.WriteLine("3. Check");
+            Console.Write("Choose an option: ");
+            int subchoice = Convert.ToInt32(Console.ReadLine());
+            switch(subchoice){
+                case 1: // CASH
+                    double amount = transaction.GetTotalAmount();
+                    Console.Write($"Enter cash value (total amount = {amount:C2}): ");
+                    double value = Convert.ToDouble(Console.ReadLine());
+                    Cash cash = new Cash(amount, amount, custId);
+                    transaction.AddPayment(cash);
+                    break;       
+                case 2: // CREDIT
+                case 3: // CHECK
+                default:
+                    Console.WriteLine("Invalid choice.");
+                    break;
             }
 
             transaction.Order.Status = Order.OrderStatus.Paid;

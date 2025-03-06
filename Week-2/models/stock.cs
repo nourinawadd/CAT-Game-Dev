@@ -7,7 +7,7 @@ namespace Models {
             {
                 products.Add(product);
             }
-            public void EditProduct(int productId, string newName, decimal newPrice, int newStockQuantity)
+            public void EditProduct(int productId, string newName, double newPrice, int newStockQuantity)
             {
                 Product product = products.Find(p => p.ProductID == productId);
                 if (product != null)

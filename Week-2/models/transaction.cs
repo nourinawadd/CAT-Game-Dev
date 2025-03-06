@@ -1,26 +1,29 @@
 namespace Models {
     public class Transaction {
-        public int CustomerID { get; private set; }
+        public int CustomerID { get; set; }
         public DateTime TransactionDate { get; private set; }
         public Order Order { get; private set; }
-        public List<Payment> Payments = new List<Payment>();
+        public Payment Payment { get; private set; }
 
         public Transaction(int customerId, Order.OrderStatus status) {
             CustomerID = customerId;
             TransactionDate = DateTime.Now;
-            Order = new Order(customerId, status);
+        }
+
+        public void AddOrder(Order order) {
+            Order = order;
         }
 
         public void AddPayment(Payment payment) {
-            Payments.Add(payment);
+            Payment = payment;
             UpdateOrderStatus();
         }
 
-        public decimal GetTotalPaid() {
-            return Payments.Sum(p => (decimal)p.Amount);
+        public double GetTotalPaid() {
+            return Payment.Amount;
         }
 
-        public decimal GetTotalAmount() {
+        public double GetTotalAmount() {
             return Order.OrderItems.Sum(item => item.SalePrice);
         }
 

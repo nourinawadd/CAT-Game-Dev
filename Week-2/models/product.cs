@@ -3,10 +3,10 @@ namespace Models {
         {
             public int ProductID { get; set; }
             public string Name { get; set; }
-            public decimal Price { get; set; }
+            public double Price { get; set; }
             public int StockQuantity { get; set; }
 
-            public Product(int productID, string name, decimal price, int stockQuantity){
+            public Product(int productID, string name, double price, int stockQuantity){
                 ProductID = productID;
                 Name = name;
                 Price = price;

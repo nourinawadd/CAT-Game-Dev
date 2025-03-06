@@ -10,5 +10,6 @@ namespace Models {
             ExpiryDate = expiry;
             CardNumber = number;
         }
+
     }
 }

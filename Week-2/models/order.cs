@@ -3,7 +3,7 @@ namespace Models {
             public int CustomerID { get; set; } 
             public int OrderNumber { get; private set; }
             public DateTime OrderDate { get; set; }
-            public decimal TotalAmount { get; private set; }
+            public double TotalAmount { get; private set; }
             public OrderStatus Status { get; set; }
             public enum OrderStatus {
                 New,
@@ -23,14 +23,12 @@ namespace Models {
 
             public void AddItem(OrderItem item) {
                 OrderItems.Add(item);
+                TotalAmount += item.SalePrice;
             }
 
-            public void UpdateOrder(OrderStatus newStatus) {
+            public void UpdateOrder(OrderStatus newStatus, OrderItem item) {
                 Status = newStatus;
-            }
-
-            public void EditOrder(decimal newTotal){
-                TotalAmount = newTotal;
+                AddItem(item);
             }
 
             public override string ToString()
