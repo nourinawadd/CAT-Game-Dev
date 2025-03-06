@@ -266,7 +266,7 @@ class MainClass{
 
             transaction.Order.Status = newStatus;
 
-            Console.Write("Enter new product ID: ");
+            Console.Write("Enter product ID: ");
             int productId = Convert.ToInt32(Console.ReadLine());
             Product product = stock.SearchProduct(productId);
             if (product == null) {
@@ -280,11 +280,16 @@ class MainClass{
                 Console.WriteLine("Not enough stock available.");
                 return;
             }
-
-            OrderItem item = new OrderItem(custId, product, quantity);
-            transaction.Order.AddItem(item);
-
-            Console.WriteLine("Order updated successfully.");
+            
+            var existingItem = transaction.Order.OrderItems.Find(i => i.Product.ProductID == productId);
+            if (existingItem != null) {
+                existingItem.UpdateQuantity(quantity);
+                Console.WriteLine("Updated quantity in existing order item.");
+            } else {
+                OrderItem item = new OrderItem(custId, product, quantity);
+                transaction.Order.AddItem(item);
+                Console.WriteLine("Added new item to order.");
+            }
         }
 
         public static void PayOrder(List<Transaction> transactions){

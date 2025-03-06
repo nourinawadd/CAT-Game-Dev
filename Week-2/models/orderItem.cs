@@ -12,6 +12,15 @@ namespace Models {
                 SalePrice = product.Price * quantity;
             }
 
+            public void UpdateQuantity(int newQuantity) {
+            if (newQuantity >= 0 && newQuantity <= Product.StockQuantity) {
+                Quantity = newQuantity;
+                SalePrice = Product.Price * Quantity;
+            } else {
+                Console.WriteLine("Invalid quantity update.");
+            }
+            }
+
             public static OrderItem operator ++(OrderItem item) {
                 if (item.Quantity < item.Product.StockQuantity){
                     item.Quantity++;
